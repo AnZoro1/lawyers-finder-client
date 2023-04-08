@@ -8,10 +8,11 @@ import HomeForNoAuth from './HomeForNoAuth'
 const Home = () => {
   const tokenFromLawyer = useSelector((state) => state.authLawyerSlice.token)
   const tokenFromClient = useSelector((state) => state.authClientSlice.token)
-  
+  const lawyer = useSelector((state) => state.authLawyerSlice.lawyer)
+
   return (
     <div>
-      {tokenFromLawyer || tokenFromClient ? (
+      {tokenFromLawyer || tokenFromClient || lawyer ? (
         <>
           <Header />
           <Main />

@@ -60,7 +60,23 @@
       background-color: blue;
     }
   }
-  .comeIn {
+  .comeInClient {
+    border: none;
+    width: 160px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(30, 57, 82);
+    color: white;
+    transition: 0.5s ease-in-out;
+    &:hover {
+      background-color: blue;
+    }
+  }
+  .comeInLawyer {
     border: none;
     width: 160px;
     height: 60px;

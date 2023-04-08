@@ -7,7 +7,7 @@ const initialState = {
   loadingSingIn: false,
   error: null,
   isRegisterLawyer: null,
-  lawyer: '',
+  lawyer: localStorage.getItem('lawyer'),
 }
 
 export const registerLawyerSignUpAxios = createAsyncThunk(
@@ -28,7 +28,7 @@ export const registerLawyerSignUpAxios = createAsyncThunk(
       if (data.error) {
         return thunkAPI.rejectWithValue(data.error)
       }
-
+      localStorage.setItem('lawyer', data.lawyerName)
       return thunkAPI.fulfillWithValue(data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -50,6 +50,7 @@ export const authLawyerSignInAxios = createAsyncThunk(
       }
 
       localStorage.setItem('tokenLawyer', data.token)
+      localStorage.setItem('lawyer', data.lawyer.lawyerName)
       return thunkAPI.fulfillWithValue(data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
