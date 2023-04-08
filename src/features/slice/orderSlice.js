@@ -11,14 +11,13 @@ export const getOrdersAxios = createAsyncThunk(
   'getOrders/axios',
   async (data, thunkAPI) => {
     try {
-      const res = await axios.get('http://localhost:4000/getOrders')
-      const orders = await res.json()
+      const { data } = await axios.get('http://localhost:4000/getOrders')
 
-      if (orders.error) {
-        return thunkAPI.rejectWithValue(orders.error)
+      if (data.error) {
+        return thunkAPI.rejectWithValue(data.error)
       }
 
-      return thunkAPI.fulfillWithValue(orders)
+      return thunkAPI.fulfillWithValue(data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }

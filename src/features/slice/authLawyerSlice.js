@@ -2,10 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const initialState = {
-  token: localStorage.getItem('token'),
+  token: localStorage.getItem('tokenLawyer'),
   loadingSingUp: false,
   loadingSingIn: false,
   error: null,
+  isRegisterLawyer: null,
+  lawyer: '',
 }
 
 export const registerLawyerSignUpAxios = createAsyncThunk(
@@ -47,7 +49,7 @@ export const authLawyerSignInAxios = createAsyncThunk(
         return thunkAPI.rejectWithValue(data.error)
       }
 
-      localStorage.setItem('token', data)
+      localStorage.setItem('tokenLawyer', data.token)
       return thunkAPI.fulfillWithValue(data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -64,14 +66,18 @@ const lawyerSlice = createSlice({
       .addCase(registerLawyerSignUpAxios.pending, (state, action) => {
         state.loadingSingUp = true
         state.error = false
+        state.isRegisterLawyer = false
       })
       .addCase(registerLawyerSignUpAxios.fulfilled, (state, action) => {
         state.loadingSingUp = false
         state.error = false
+        state.isRegisterLawyer = true
+        state.lawyer = action.payload
       })
       .addCase(registerLawyerSignUpAxios.rejected, (state, action) => {
         state.loadingSingUp = false
         state.error = action.payload
+        state.isRegisterLawyer = false
       })
       .addCase(authLawyerSignInAxios.pending, (state, action) => {
         state.loadingSingIn = true
@@ -80,12 +86,12 @@ const lawyerSlice = createSlice({
       .addCase(authLawyerSignInAxios.fulfilled, (state, action) => {
         state.loadingSingIn = false
         state.error = false
-        state.token = action.payload
+        state.token = action.payload.token
+        state.lawyer = action.payload.lawyer
       })
       .addCase(authLawyerSignInAxios.rejected, (state, action) => {
         state.pending = false
         state.error = action.payload
-        state.token = action.payload
       })
   },
 })

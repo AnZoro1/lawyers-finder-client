@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { authClientSignUpAxios } from '../../../features/slice/authClientSlice'
 import styles from './RegisterClient.module.scss'
 
@@ -9,6 +10,21 @@ const RegisterClient = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const isRegisterClient = useSelector(
+    (state) => state.authClientSlice.isRegisterClient
+  )
+
+  const client = useSelector((state) => state.authClientSlice.client)
+
+  useEffect(() => {
+    if (isRegisterClient) {
+      navigate('/')
+    }
+  }, [isRegisterClient])
+
+  console.log(isRegisterClient)
 
   const sendRegisterData = (e) => {
     e.preventDefault()

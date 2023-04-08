@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { registerLawyerSignUpAxios } from '../../../features/slice/authLawyerSlice'
 
 const RegisterLawyer = () => {
@@ -8,6 +9,19 @@ const RegisterLawyer = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const isRegisterLawyer = useSelector(
+    (state) => state.authLawyerSlice.isRegisterLawyer
+  )
+
+  const lawyer = useSelector((state) => state.authLawyerSlice.lawyer)
+
+  useEffect(() => {
+    if (isRegisterLawyer) {
+      navigate('/')
+    }
+  }, [isRegisterLawyer])
 
   const sendRegisterData = (e) => {
     e.preventDefault()
@@ -41,7 +55,7 @@ const RegisterLawyer = () => {
         />
         <input
           type="text"
-          placeholder="Введите номер телефона"
+          placeholder="Введите номер телефона..."
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />

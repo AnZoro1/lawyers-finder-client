@@ -1,11 +1,23 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { authLawyerSignInAxios } from '../../../features/slice/authLawyerSlice'
 
 const LoginLawyer = () => {
   const [password, setPassword] = useState('')
   const [lawyerName, setLawyerName] = useState('')
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const tokenLawyer = useSelector((state) => state.authLawyerSlice.token)
+
+  const lawyer = useSelector((state) => state.authLawyerSlice.lawyer)
+
+  useEffect(() => {
+    if (tokenLawyer) {
+      navigate('/')
+    }
+  }, [tokenLawyer])
 
   const sendLawyerData = (e) => {
     e.preventDefault()

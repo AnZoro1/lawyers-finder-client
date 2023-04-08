@@ -15,7 +15,7 @@ function App() {
         <Route path="/addOrder" element={<AddOrder />} />
         <Route path="/registerClient" element={<RegisterClient />} />
         <Route path="/loginClient" element={<LoginClient />} />
-        <Route path="/RegisterLawyer/" element={<RegisterLawyer />} />
+        <Route path="/RegisterLawyer" element={<RegisterLawyer />} />
         <Route path="/LoginLawyer" element={<LoginLawyer />} />
       </Routes>
     </div>
