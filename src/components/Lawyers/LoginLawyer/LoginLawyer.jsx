@@ -13,6 +13,9 @@ const LoginLawyer = () => {
 
   const lawyer = useSelector((state) => state.authLawyerSlice.lawyer)
 
+  const localStor = localStorage.getItem('lawyer')
+
+
   useEffect(() => {
     if (tokenLawyer) {
       navigate('/')

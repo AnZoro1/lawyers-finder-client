@@ -12,19 +12,13 @@ const RegisterClient = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const isRegisterClient = useSelector(
-    (state) => state.authClientSlice.isRegisterClient
-  )
-
-  const client = useSelector((state) => state.authClientSlice.client)
+  const client = localStorage.getItem('client')
 
   useEffect(() => {
-    if (isRegisterClient) {
+    if (client) {
       navigate('/')
     }
-  }, [isRegisterClient])
-
-  console.log(isRegisterClient)
+  }, [client])
 
   const sendRegisterData = (e) => {
     e.preventDefault()

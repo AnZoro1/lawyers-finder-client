@@ -6,8 +6,7 @@ const initialState = {
   error: null,
   signUpLoading: false,
   signInLoading: false,
-  isRegisterClient: null,
-  client: '',
+  client: localStorage.getItem('client'),
 }
 
 export const authClientSignUpAxios = createAsyncThunk(
@@ -24,6 +23,8 @@ export const authClientSignUpAxios = createAsyncThunk(
       if (data.error) {
         return thunkAPI.rejectWithValue(data.error)
       }
+
+      localStorage.setItem('client', data.clientName)
 
       return thunkAPI.fulfillWithValue(data)
     } catch (error) {
@@ -46,6 +47,7 @@ export const authClientSignInAxios = createAsyncThunk(
       }
 
       localStorage.setItem('tokenClient', data.token)
+      localStorage.setItem('client', data.client.clientName)
 
       return thunkAPI.fulfillWithValue(data)
     } catch (error) {

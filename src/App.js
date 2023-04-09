@@ -15,8 +15,8 @@ function App() {
         <Route path="/addOrder" element={<AddOrder />} />
         <Route path="/registerClient" element={<RegisterClient />} />
         <Route path="/loginClient" element={<LoginClient />} />
-        <Route path="/RegisterLawyer" element={<RegisterLawyer />} />
-        <Route path="/LoginLawyer" element={<LoginLawyer />} />
+        <Route path="/registerLawyer" element={<RegisterLawyer />} />
+        <Route path="/loginLawyer" element={<LoginLawyer />} />
       </Routes>
     </div>
   )

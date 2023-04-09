@@ -9,10 +9,11 @@ const Home = () => {
   const tokenFromLawyer = useSelector((state) => state.authLawyerSlice.token)
   const tokenFromClient = useSelector((state) => state.authClientSlice.token)
   const lawyer = useSelector((state) => state.authLawyerSlice.lawyer)
+  const client = useSelector((state) => state.authClientSlice.client)
 
   return (
     <div>
-      {tokenFromLawyer || tokenFromClient || lawyer ? (
+      {tokenFromLawyer || tokenFromClient || lawyer || client ? (
         <>
           <Header />
           <Main />

@@ -6,7 +6,6 @@ const initialState = {
   loadingSingUp: false,
   loadingSingIn: false,
   error: null,
-  isRegisterLawyer: null,
   lawyer: localStorage.getItem('lawyer'),
 }
 

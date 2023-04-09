@@ -11,17 +11,15 @@ const RegisterLawyer = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const isRegisterLawyer = useSelector(
-    (state) => state.authLawyerSlice.isRegisterLawyer
-  )
-
   const lawyer = useSelector((state) => state.authLawyerSlice.lawyer)
 
+  const localStor = localStorage.getItem('lawyer')
+
   useEffect(() => {
-    if (isRegisterLawyer) {
+    if (localStor) {
       navigate('/')
     }
-  }, [isRegisterLawyer])
+  }, [localStor])
 
   const sendRegisterData = (e) => {
     e.preventDefault()
