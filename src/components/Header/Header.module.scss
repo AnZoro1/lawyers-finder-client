@@ -39,6 +39,7 @@
     font-family: 'Roboto', sans-serif;
     background-color: rgb(30, 57, 82);
     color: white;
+    cursor: pointer;
     transition: 0.5s ease-in-out;
     &:hover {
       background-color: blue;
@@ -53,6 +54,7 @@
     justify-content: center;
     border-radius: 10px;
     font-family: 'Roboto', sans-serif;
+    cursor: pointer;
     background-color: rgb(30, 57, 82);
     color: white;
     transition: 0.5s ease-in-out;
@@ -69,6 +71,7 @@
     justify-content: center;
     border-radius: 10px;
     font-family: 'Roboto', sans-serif;
+    cursor: pointer;
     background-color: rgb(30, 57, 82);
     color: white;
     transition: 0.5s ease-in-out;
@@ -84,7 +87,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
     background-color: rgb(30, 57, 82);
     color: white;
     transition: 0.5s ease-in-out;

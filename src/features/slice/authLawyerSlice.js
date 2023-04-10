@@ -7,6 +7,7 @@ const initialState = {
   loadingSingIn: false,
   error: null,
   lawyer: localStorage.getItem('lawyer'),
+  lawyerFullData: localStorage.getItem('lawyerId'),
 }
 
 export const registerLawyerSignUpAxios = createAsyncThunk(
@@ -28,6 +29,7 @@ export const registerLawyerSignUpAxios = createAsyncThunk(
         return thunkAPI.rejectWithValue(data.error)
       }
       localStorage.setItem('lawyer', data.lawyerName)
+      localStorage.setItem('lawyerId', data._id)
       return thunkAPI.fulfillWithValue(data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -50,10 +52,22 @@ export const authLawyerSignInAxios = createAsyncThunk(
 
       localStorage.setItem('tokenLawyer', data.token)
       localStorage.setItem('lawyer', data.lawyer.lawyerName)
+      localStorage.setItem('lawyerId', data.lawyer._id)
       return thunkAPI.fulfillWithValue(data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }
+  }
+)
+
+export const addOrderForLawyerAxios = createAsyncThunk(
+  'addOrder/lawyer',
+  async ({ id, lawyerId }, thunkAPI) => {
+    try {
+      const { data } = await axios.patch(`http://localhost:4000/${lawyerId}`, {
+        id,
+      })
+    } catch (error) {}
   }
 )
 
@@ -66,18 +80,16 @@ const lawyerSlice = createSlice({
       .addCase(registerLawyerSignUpAxios.pending, (state, action) => {
         state.loadingSingUp = true
         state.error = false
-        state.isRegisterLawyer = false
       })
       .addCase(registerLawyerSignUpAxios.fulfilled, (state, action) => {
         state.loadingSingUp = false
         state.error = false
-        state.isRegisterLawyer = true
         state.lawyer = action.payload
+        state.lawyerFullData = action.payload
       })
       .addCase(registerLawyerSignUpAxios.rejected, (state, action) => {
         state.loadingSingUp = false
         state.error = action.payload
-        state.isRegisterLawyer = false
       })
       .addCase(authLawyerSignInAxios.pending, (state, action) => {
         state.loadingSingIn = true
@@ -88,6 +100,7 @@ const lawyerSlice = createSlice({
         state.error = false
         state.token = action.payload.token
         state.lawyer = action.payload.lawyer
+        state.lawyerFullData = action.payload
       })
       .addCase(authLawyerSignInAxios.rejected, (state, action) => {
         state.pending = false
