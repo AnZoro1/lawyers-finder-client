@@ -30,7 +30,7 @@ const Header = () => {
         Войти, как клиент
       </div>
       <div className={styles.comeInLawyer} onClick={handleAuthLawyer}>
-        Войти, как юрист
+        Войти, как юрист haha
       </div>
     </div>
   )
