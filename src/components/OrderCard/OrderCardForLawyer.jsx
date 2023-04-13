@@ -1,13 +1,22 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './OrderCardForClient.module.scss'
+import { addOrderForLawyerAxios } from '../../features/slice/authLawyerSlice'
 
 const OrderCardForClient = ({ topic, text, price, id }) => {
   const lawyer = useSelector((state) => state.authLawyerSlice.lawyerFullData)
+  const dispatch = useDispatch()
+  const lawyerId = localStorage.getItem('lawyerId')
 
   const handleChooseOrder = () => {
     console.log(id)
     console.log(localStorage.getItem('lawyerId'))
+    dispatch(
+      addOrderForLawyerAxios({
+        id,
+        lawyerId,
+      })
+    )
   }
 
   return (

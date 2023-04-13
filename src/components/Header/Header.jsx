@@ -18,6 +18,9 @@ const Header = () => {
   const handleAuthLawyer = () => {
     navigate('/registerLawyer')
   }
+  const handlePersonalAccount = () => {
+    navigate('/personalAccount')
+  }
 
   return (
     <div className={styles.mainDiv}>
@@ -30,7 +33,10 @@ const Header = () => {
         Войти, как клиент
       </div>
       <div className={styles.comeInLawyer} onClick={handleAuthLawyer}>
-        Войти, как юрист haha
+        Войти, как юрист
+      </div>
+      <div className={styles.personalAccount} onClick={handlePersonalAccount}>
+        Личный кабинет
       </div>
     </div>
   )

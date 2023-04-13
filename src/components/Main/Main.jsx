@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrdersAxios } from '../../features/slice/orderSlice'
 import OrderCard from '../OrderCard/OrderCard'
-import OrderCardForClient from '../OrderCard/OrderCardForClient'
+import OrderCardForLawyer from '../OrderCard/OrderCardForLawyer'
 import styles from './Main.module.scss'
 
 const Main = () => {
@@ -15,7 +15,7 @@ const Main = () => {
   useEffect(() => {
     const localStorageKeys = Object.keys(localStorage) // вытаскиваем в массив ключи из localStorage
     if (localStorageKeys.includes('client')) {
-      // если среди ключей есть ключ под названием <client className=""></client>
+      // если среди ключей есть ключ под названием client>
       setRole('client') // обновляем локальное состояние и добавляем туда этот ключ
     } else if (localStorageKeys.includes('lawyer')) {
       // тоже самое
@@ -37,7 +37,7 @@ const Main = () => {
               />
             )}
             {role === 'lawyer' && ( //  если в приложении авторизуется или зар-ся юрист, ему отобразится компонент OrderCardForClient, так как в role из localStorage будет положено 'lawyer'
-              <OrderCardForClient
+              <OrderCardForLawyer
                 topic={item.topic}
                 text={item.text}
                 price={item.price}

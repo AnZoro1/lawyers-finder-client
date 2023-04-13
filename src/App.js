@@ -6,6 +6,7 @@ import Home from './pages/Home/Home'
 import LoginLawyer from './components/Lawyers/LoginLawyer/LoginLawyer'
 import RegisterLawyer from './components/Lawyers/RegisterLawyer/RegisterLawyer'
 import styles from './App.module.scss'
+import personalAccount from './components/personalAccount/personalAccount'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/loginClient" element={<LoginClient />} />
         <Route path="/registerLawyer" element={<RegisterLawyer />} />
         <Route path="/loginLawyer" element={<LoginLawyer />} />
+        <Route path="/personalAccount" element={<personalAccount />} />
       </Routes>
     </div>
   )

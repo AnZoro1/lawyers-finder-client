@@ -13,10 +13,6 @@ const initialState = {
 export const registerLawyerSignUpAxios = createAsyncThunk(
   'register/lawyer',
   async ({ lawyerName, email, phoneNumber, password }, thunkAPI) => {
-    console.log(lawyerName)
-    console.log(email)
-    console.log(phoneNumber)
-    console.log(password)
     try {
       const { data } = await axios.post('http://localhost:4000/authLawyer', {
         lawyerName,
@@ -64,10 +60,17 @@ export const addOrderForLawyerAxios = createAsyncThunk(
   'addOrder/lawyer',
   async ({ id, lawyerId }, thunkAPI) => {
     try {
-      const { data } = await axios.patch(`http://localhost:4000/${lawyerId}`, {
-        id,
-      })
-    } catch (error) {}
+      const { data } = await axios.patch(
+        `http://localhost:4000/lawyers/${lawyerId}`,
+        {
+          id,
+        }
+      )
+      localStorage.setItem('lawyer', data)
+      return thunkAPI.fulfillWithValue(data)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
   }
 )
 
@@ -103,6 +106,19 @@ const lawyerSlice = createSlice({
         state.lawyerFullData = action.payload
       })
       .addCase(authLawyerSignInAxios.rejected, (state, action) => {
+        state.pending = false
+        state.error = action.payload
+      })
+      .addCase(addOrderForLawyerAxios.pending, (state, action) => {
+        state.pending = true
+        state.error = false
+      })
+      .addCase(addOrderForLawyerAxios.fulfilled, (state, action) => {
+        state.pending = false
+        state.error = false
+        state.lawyer = action.payload
+      })
+      .addCase(addOrderForLawyerAxios.rejected, (state, action) => {
         state.pending = false
         state.error = action.payload
       })
