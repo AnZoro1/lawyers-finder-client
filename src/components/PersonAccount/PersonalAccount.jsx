@@ -9,7 +9,7 @@ const PersonalAccount = () => {
 
   return (
     <div>
-      <div>Юрист: {person.lawyerName}</div>
+      <div>Юристттт: {person.lawyerName}</div>
       <div>Почта: {person.email}</div>
       <div>Номер телефона: {person.phoneNumber}</div>
       <div>
