@@ -24,7 +24,7 @@ export const registerLawyerSignUpAxios = createAsyncThunk(
       if (data.error) {
         return thunkAPI.rejectWithValue(data.error)
       }
-      localStorage.setItem('lawyer', data.lawyerName)
+      localStorage.setItem('lawyer', data)
       localStorage.setItem('lawyerId', data._id)
       return thunkAPI.fulfillWithValue(data)
     } catch (error) {
@@ -47,7 +47,7 @@ export const authLawyerSignInAxios = createAsyncThunk(
       }
 
       localStorage.setItem('tokenLawyer', data.token)
-      localStorage.setItem('lawyer', data.lawyer.lawyerName)
+      localStorage.setItem('lawyer', JSON.stringify(data.lawyer))
       localStorage.setItem('lawyerId', data.lawyer._id)
       return thunkAPI.fulfillWithValue(data)
     } catch (error) {
