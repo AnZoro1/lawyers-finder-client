@@ -1,12 +1,13 @@
-import { Route, Routes } from 'react-router-dom'
-import AddOrder from './components/Clients/addOrder/AddOrder'
-import LoginClient from './components/Clients/LoginClient/LoginClient'
-import RegisterClient from './components/Clients/RegisterClient/RegisterClient'
-import Home from './pages/Home/Home'
-import LoginLawyer from './components/Lawyers/LoginLawyer/LoginLawyer'
-import RegisterLawyer from './components/Lawyers/RegisterLawyer/RegisterLawyer'
-import styles from './App.module.scss'
-import PersonalAccount from './components/PersonAccount/PersonalAccount'
+import { Route, Routes } from "react-router-dom";
+import AddOrder from "./components/Clients/addOrder/AddOrder";
+import LoginClient from "./components/Clients/LoginClient/LoginClient";
+import RegisterClient from "./components/Clients/RegisterClient/RegisterClient";
+import Home from "./pages/Home/Home";
+import LoginLawyer from "./components/Lawyers/LoginLawyer/LoginLawyer";
+import RegisterLawyer from "./components/Lawyers/RegisterLawyer/RegisterLawyer";
+import styles from "./App.module.scss";
+import PersonalAccount from "./components/PersonAccount/PersonalAccount";
+import App2 from "./components/Antd/Antd";
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
         <Route path="/registerLawyer" element={<RegisterLawyer />} />
         <Route path="/loginLawyer" element={<LoginLawyer />} />
         <Route path="/personalAccount" element={<PersonalAccount />} />
+        <Route path="/antd" element={<App2 />} />
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
